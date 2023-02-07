@@ -42,7 +42,7 @@ Ecrire une requête pour trouver tous les documents dans la collection employees
 ```javascript
 db.employees.find({})
 ```
-La commande find nous permet de chercher la table employees.
+La commande find nous permet de chercher dans la table employees.
 La condition vide {} indique que l'on applique pas de filtre
 
 Resultat :
@@ -142,7 +142,7 @@ Ecrire une requête pour avoir que le nom et le job de chaque document
 ```javascript
 db.employees.find({}, { _id: 0, name: 1, job: 1 })
 ```
-Pour recupérer uniquement le nom et le job on leur assigne 1. On assigne 0 a "_id_" car il s'affiche par défaut automatiquement
+Dans la projection, pour recupérer uniquement le nom et le job on leur assigne 1. On assigne 0 a "_id_" car il s'affiche par défaut automatiquement
 
 Resultat:
 ```javascript
