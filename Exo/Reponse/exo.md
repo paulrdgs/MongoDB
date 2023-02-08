@@ -216,7 +216,7 @@ db.salles.find(
 	{ "_id": 1 }
 )
 
-// 
+// $mod permet de faire un calcule, dans ce cas la pour savoir si l'id est paire ou non
 ```
 
 Resultat:
@@ -233,6 +233,8 @@ db.salles.find(
 	{ "avis.note": { $gte: 8, $lte: 10 } }, 
 	{ "nom": 1, _id: 0 }
 )
+// $gte signifie: "superieur a "
+// $lte signifie: "inferieur a"
 ```
 
 Resultat:
@@ -273,7 +275,8 @@ db.salles.find({
   "capacite": 1,
   "_id": 0
 })
-
+// ici, $multiply nous permet d emultiplier l'id par 100
+// avec $gt on verifie si ce resultat est superieru a la capacité
 ```
 
 Resultat:
@@ -354,6 +357,7 @@ db.salles.updateMany(
 	{_id: {$ne: 2}, _id: {$ne: 3}}, 
 	{$pull: {styles: "funk"}}
 )
+// $pull nous permet d'ajouter un styles
 ```
 
 Resultat:
@@ -396,6 +400,7 @@ db.salles.updateMany(
 {nom: {$regex: /^P/i}}, 
 {$inc: {capacite: 150}, $push: {contact: {telephone: "04 11 94 00 10"}}}
 )
+// $regex nous permet de creer un pattern 
 ```
 
 Resultat:
