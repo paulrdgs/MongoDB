@@ -870,6 +870,67 @@ db.personnes.aggregate([
 	 }
  ])
 ```
+## Opérateur $group
+```javascript
+{
+	$group: {
+		"_id": <expression>,
+		<champ>: { <operateur d accumulation> }
+	}
+}
+
+// operateur d'accumulation `$push`, `$sum`, `$avg`, `$min`, `$max`
+var pipeline = [
+	{
+		$group: {
+			"_id": "$age",
+			"nombre_personnes": { $sum: 1 }
+		}
+	},
+	{
+		$sort: { "nombre_personnes": 1 }
+	}
+]
+
+db.personnes.aggregate(pipeline)
+
+db.personnes.aggregate([
+	{
+		$sortByCount: "$age"
+	}
+])
+
+var pipeline = [
+	{
+		$group: {
+			"_id": null,
+			"nombre_personnes": { $sum: 1 }
+		}
+	}
+]
+
+
+var pipeline = [
+	{
+		$match: {
+			"age": { $exists: true }
+		}
+	},
+	{
+		$group: {
+			"_id": null,
+			"avg": { $avg: "$age" }
+		}
+	},
+	{
+		$project: {
+			"_id": 0,
+			"Age_moyen": { $ceil: "$avg" }
+		}
+	}
+]
+
+```
 ## Pour eval
 - pouvoir renommer une collection mongodb.com
 ```javascript
